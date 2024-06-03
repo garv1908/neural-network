@@ -51,4 +51,26 @@ for epoch in range(epochs):
             # how many images are classified correctly
         nr_correct == int(np.argmax(o) == np.argmax(l))
 
-       
+        # backward propagation: propagate error from the end back to the start
+            # output -> hidden (error function derivative)
+            # normally requires derivatiave of the error function, but thanks to math,
+            # we don't really need it, and we can write:
+        delta_o = o - l
+
+            # get update value for each weight connecting both layers
+        w_h_o += -learn_rate * delta_o @ np.transpose(h)
+        b_h_o += -learn_rate * delta_o
+            
+            # hidden -> input (activation function derivative)
+
+            # delta_h shows how each hidden neuron participated towards the error
+        delta_h = np.transpose(w_h_o) @ delta_o * (h * (1 - h))
+            
+            # calculate update values for weights connecting the input with the hidden layer
+        w_i_h += -learn_rate * delta_h @ np.transpose(img)
+        b_i_h += -learn_rate * delta_h
+
+    # show accuracy for this epoch
+    print(f"Acc: a{round((nr_correct / images.shape[0]) * 100, 2)}%")
+    nr_correct = 0
+
