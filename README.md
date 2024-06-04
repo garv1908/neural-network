@@ -11,4 +11,6 @@ We then carry out an error/cost function that compares the output/prediction of 
 
 The cyclic motion of self-learning neural networks comes up when we introduce backward propagation, which resembles the model using this information to then adjust its weights and biases in order to make a more accurate prediction the next time. This particular pipeline looks like: output -> hidden -> input.
 
-This is a good dive into the 'hello-world' for neural networks, and this project has definitely provided me with knowledge, that'll definitely help me continue working on more interesting projects in the future!
+## Some final words
+
+This is a good dive into the 'hello-world' for neural networks, and this project has definitely provided me with knowledge that'll definitely help me continue working on more interesting projects in the future!
