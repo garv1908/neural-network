@@ -1,6 +1,6 @@
 # Learning to write a neural network that recognizes hand-written digits!
 
-This is a humble adventure to venture out into the world of machine-learning. I've heavily commented the code, mostly for my own understanding of the concepts, but feel free to run the [nn.py](./nn.py) file and check out how the program performs yourself! It goes through 3 epochs, or iterations, training itself on the MNIST dataset included in `/data`.
+This is a humble adventure to venture out into the world of machine-learning. I've heavily commented the code, mostly for my own understanding of the concepts, but feel free to run the [nn.py](./nn.py) file and check out how the program performs yourself! It goes through 3 epochs, or iterations, training itself on the MNIST dataset included in `/data`. The program then asks for a number between 0 to 59999, which is the size of the dataset, and then predicts what the number is based on its pre-adjusted weights and biases.
 
 ## How does it work?
 
@@ -11,4 +11,6 @@ We then carry out an error/cost function that compares the output/prediction of 
 
 The cyclic motion of self-learning neural networks comes up when we introduce backward propagation, which resembles the model using this information to then adjust its weights and biases in order to make a more accurate prediction the next time. This particular pipeline looks like: output -> hidden -> input.
 
-This is a good dive into the 'hello-world' for neural networks, and this project has definitely provided me with knowledge, that'll definitely help me continue working on more interesting projects in the future!
+## Some final words
+
+This is a good dive into the 'hello-world' for neural networks, and this project has definitely provided me with knowledge that'll definitely help me continue working on more interesting projects in the future!
