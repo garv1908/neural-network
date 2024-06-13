@@ -74,14 +74,7 @@ for epoch in range(epochs):
     print(f"Accuracy: {round((nr_correct / images.shape[0]) * 100, 2)}%")
     nr_correct = 0
 
-# show the results
-while True:
-    index = int(input("Enter a number (0-59999): "))
-    img = images[index]
-    plt.imshow(img.reshape(28, 28), cmap="Greys")
-
-    img.shape += (1, )
-
+def GetPrediction(img):
     # use forward propagation to get output values
     # forward propagation input -> hidden
     h_pre = b_i_h + w_i_h @ img.reshape(784, 1)
@@ -90,6 +83,17 @@ while True:
     # forward propagation hidden -> output
     o_pre = b_h_o + w_h_o @ h
     o = 1 / (1 + np.exp(-o_pre))
+    return o
+
+# show the results
+while True:
+    index = int(input("Enter a number (0-59999): "))
+    img = images[index]
+    plt.imshow(img.reshape(28, 28), cmap="Greys")
+
+    img.shape += (1, )
+
+    o = GetPrediction(img)
 
     plt.title(f"Is the number a {o.argmax()}? :)")
     plt.show()
