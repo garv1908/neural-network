@@ -1,7 +1,7 @@
 "use strict";
 
 const canvas = document.getElementsByTagName("canvas")[0];
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext("2d");
 let painting = false;
 
 function startPosition(ev) {
@@ -16,8 +16,8 @@ function endPosition(ev) {
 }
 
 ctx.lineWidth = 10;
-ctx.lineCap = 'round';
-ctx.strokeStyle = 'black';
+ctx.lineCap = "round";
+ctx.strokeStyle = "black";
 
 function draw(ev) {
     if (!painting) return;
@@ -34,24 +34,21 @@ function clearCanvas() {
 
 function submitDrawing() {
     const dataURL = canvas.toDataURL();
-    const img = new Image();
-    img.src = dataURL;
-    img.onload = () => {
-        const scaledCanvas = document.createElement('canvas');
-        scaledCanvas.width = 28;
-        scaledCanvas.height = 28;
-        const scaledCtx = scaledCanvas.getContext('2d');
-        scaledCtx.drawImage(img, 0, 0 , 28, 28);
-
-        const imageData = scaledCtx.getImageData(0, 0, 28, 28);
-        const pixels = imageData.data;
-        const greyScaleData = [];
-
-        for (let i = 0; i < pixels.length; i += 4) {
-            const grey = (pixels[i] + pixels[i + 1] + pixels[i + 2] / 3)
-            greyScaleData.push(grey / 255)
-        }
-    }
+    fetch("/predict", {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({ image: dataURL })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Prediction Result:", data);
+        document.getElementById('result').innerText = `Prediction: ${data.prediction}`;
+    })
+    .catch(error => {
+        console.error("Prediction Error:", error);
+    });
 }
 
 canvas.addEventListener("mousedown", startPosition);
