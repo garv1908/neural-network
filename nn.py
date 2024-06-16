@@ -19,7 +19,7 @@ b_h_o = np.zeros((10, 1))
 # pre-set values
 learn_rate = 0.01
 nr_correct = 0
-epochs = 3 # number of iterations for each input/sample/image
+epochs = 1 # number of iterations for each input/sample/image
 
 for epoch in range(epochs):
     for img, l in zip(images, labels):
@@ -75,6 +75,7 @@ for epoch in range(epochs):
     nr_correct = 0
 
 def GetPrediction(img):
+ 
     # use forward propagation to get output values
     # forward propagation input -> hidden
     h_pre = b_i_h + w_i_h @ img.reshape(784, 1)
@@ -85,15 +86,17 @@ def GetPrediction(img):
     o = 1 / (1 + np.exp(-o_pre))
     return o
 
-# show the results
-while True:
-    index = int(input("Enter a number (0-59999): "))
-    img = images[index]
-    plt.imshow(img.reshape(28, 28), cmap="Greys")
+if __name__ == "__main__":
+    # show the results
+    while True:
+        index = int(input("Enter a number (0-59999): "))
+        img = images[index]
+        print(type(img))
+        plt.imshow(img.reshape(28, 28), cmap="Greys")
 
-    img.shape += (1, )
+        img.shape += (1, )
 
-    o = GetPrediction(img)
+        o = GetPrediction(img)
 
-    plt.title(f"Is the number a {o.argmax()}? :)")
-    plt.show()
+        plt.title(f"Is the number a {o.argmax()}? :)")
+        plt.show()
