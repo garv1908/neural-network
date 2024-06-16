@@ -91,7 +91,7 @@ if __name__ == "__main__":
     while True:
         index = int(input("Enter a number (0-59999): "))
         img = images[index]
-        print(type(img))
+        print(img.shape)
         plt.imshow(img.reshape(28, 28), cmap="Greys")
 
         img.shape += (1, )

@@ -34,12 +34,13 @@ function clearCanvas() {
 
 function submitDrawing() {
     const dataURL = canvas.toDataURL();
+    console.log(dataURL)
     fetch("/predict", {
         method: "POST",
         headers: {
             "Content-Type": 'application/json'
         },
-        body: JSON.stringify({ image: dataURL })
+        body: JSON.stringify({ 'image': dataURL })
     })
     .then(response => response.json())
     .then(data => {
