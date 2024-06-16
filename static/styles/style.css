@@ -32,6 +32,8 @@ h1 {
 canvas {
     border: solid var(--off-black) 0.1em;
     grid-area: canvas;
+    height: 280px;
+    width: 280px;
     justify-self: center;
 }
 
