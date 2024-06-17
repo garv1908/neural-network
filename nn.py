@@ -19,7 +19,7 @@ b_h_o = np.zeros((10, 1))
 # pre-set values
 learn_rate = 0.01
 nr_correct = 0
-epochs = 1 # number of iterations for each input/sample/image
+epochs = 2 # number of iterations for each input/sample/image
 
 for epoch in range(epochs):
     for img, l in zip(images, labels):
@@ -79,6 +79,10 @@ def GetPrediction(img):
     # use forward propagation to get output values
     # forward propagation input -> hidden
     h_pre = b_i_h + w_i_h @ img.reshape(784, 1)
+    print('h_pre', h_pre)
+    print('b_i_h', b_i_h)
+    print('w_i_h', w_i_h)
+    
     h = 1 / (1 + np.exp(-h_pre))
     
     # forward propagation hidden -> output
