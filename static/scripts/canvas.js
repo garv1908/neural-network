@@ -15,7 +15,7 @@ function endPosition(ev) {
     ctx.closePath();
 }
 
-ctx.lineWidth = 10;
+ctx.lineWidth = 25;
 ctx.lineCap = "round";
 ctx.strokeStyle = "black";
 
