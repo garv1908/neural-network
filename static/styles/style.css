@@ -7,16 +7,16 @@
 }
 
 body {
-    height: 100%;
     background-color: var(--off-white); 
     color: var(--off-black);
     font-family: "Poppins", sans-serif;
     display: grid;
     grid-template-areas: 
     "head   head    head    head"
-    ".      canvas  canvas  prediction"
-    ".      button  button  prediction";
+    ".      canvas  canvas  .   "
+    ".      button  button  .   ";
     grid-template-rows: 5em 300px 4em;
+    grid-template-columns: auto 1fr auto;
     transition: all 1s ease;
     align-items: center;
 }
@@ -61,4 +61,10 @@ button {
 button:hover {
     box-shadow: 0.3em 0.3em 0 var(--off-black);
     transform: translate(-0.3em,-0.3em);
+}
+
+aside {
+    font-size: 1.5em;
+    position: absolute;
+    right: 5vw;
 }
