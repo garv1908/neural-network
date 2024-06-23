@@ -76,7 +76,7 @@ class NeuralNetwork():
             print(f"Accuracy: {round((self.nr_correct / self.images.shape[0]) * 100, 2)}%")
             self.nr_correct = 0
 
-        model_filename = "feed-forward.pkl"
+        model_filename = "./loaded_models/feed-forward.pkl"
         with open(model_filename, "wb") as file:
             pickle.dump(self, file)
 

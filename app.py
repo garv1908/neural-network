@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 nn = NeuralNetwork()
 
-model_filename = "feed-forward.pkl"
+model_filename = "./loaded_models/feed-forward.pkl"
 
 if os.path.exists(model_filename):
     nn = nn.load_model(model_filename)
