@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 app = Flask(__name__)
 
 nn = NeuralNetwork()
-nn.train()
+nn.train(epochs=1)
 
 @app.route("/")
 def index():
@@ -33,22 +33,18 @@ def process_image(image_data):
 def predict():
     data = request.get_json()
 
-    print('data:', data)
     if 'image' not in data:
         return jsonify({'error': 'No image data provided'}), 400
 
     image_data = data['image']
-    print('image data:', image_data)
     greyscale_image = process_image(image_data)
-    print(f"Processed data: {greyscale_image}")
 
     prediction = nn.get_prediction(greyscale_image)
     label = np.argmax(prediction)
 
     print(prediction)
-    print(label)
-    
-    return jsonify({'prediction': int(label)})
+    return jsonify(prediction.tolist())
+    # return jsonify(int(label))
 
 if __name__ == "__main__":
     app.run(debug=True)
