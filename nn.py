@@ -20,10 +20,9 @@ class NeuralNetwork():
         # pre-set values
         self.learn_rate = 0.01
         self.nr_correct = 0
-        self.epochs = 3 # number of iterations for each input/sample/image
     
-    def train(self):
-        for epoch in range(self.epochs):
+    def train(self, epochs):
+        for epoch in range(epochs): # number of iterations for each input/sample/image
             for img, l in zip(self.images, self.labels):
                 # converting img and l from vectors to matrices
                     # img: 784 -> (784, 1)
@@ -91,7 +90,7 @@ class NeuralNetwork():
 if __name__ == "__main__":
 
     nn = NeuralNetwork()
-    nn.train()
+    nn.train(epochs=1)
 
     # show the results
     while True:
