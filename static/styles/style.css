@@ -12,9 +12,9 @@ body {
     font-family: "Poppins", sans-serif;
     display: grid;
     grid-template-areas: 
-    "head   head    head    head"
-    ".      canvas  canvas  .   "
-    ".      button  button  .   ";
+    "head   head    head    pred    "
+    ".      canvas  canvas  pred    "
+    ".      button  button  pred    ";
     grid-template-rows: 5em 300px 4em;
     grid-template-columns: auto 1fr auto;
     transition: all 1s ease;
@@ -65,6 +65,25 @@ button:hover {
 
 aside {
     font-size: 1.5em;
-    position: absolute;
-    right: 5vw;
+    border: 0.05em solid var(--off-black);
+    padding: 0.7em;
+    grid-area: pred;
+    margin: 2em;
 }
+
+aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    margin-top: 1em;
+    width: 100%;
+}
+
+th, td {
+    border: 0.05em solid var(--off-black);
+    padding: 0.3em;
+}
+
