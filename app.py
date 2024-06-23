@@ -40,11 +40,8 @@ def predict():
     greyscale_image = process_image(image_data)
 
     prediction = nn.get_prediction(greyscale_image)
-    label = np.argmax(prediction)
 
-    print(prediction)
     return jsonify(prediction.tolist())
-    # return jsonify(int(label))
 
 if __name__ == "__main__":
     app.run(debug=True)

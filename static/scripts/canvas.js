@@ -43,13 +43,12 @@ function submitDrawing() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log("Prediction Result:", data);
         for (var j = 0; j < 5; j++) {
+            
             var max = data[0];
             var maxIndex = 0;
             
             for (var i = 1; i < data.length; i++) {
-                console.log(`i ${i}`)
                 if (data[i] > max) {
                     maxIndex = i;
                     max = data[i];

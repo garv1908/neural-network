@@ -37,6 +37,9 @@ canvas {
     justify-self: center;
 }
 
+
+/* ------------- Button styles ------------- */
+
 ul {
     display: flex;
     flex-direction: row;
@@ -63,15 +66,16 @@ button:hover {
     transform: translate(-0.3em,-0.3em);
 }
 
+/* ----------------------------------------- */
+
+/* ------------- Prediction table ------------- */
+
 aside {
     font-size: 1.5em;
     border: 0.05em solid var(--off-black);
     padding: 0.7em;
     grid-area: pred;
     margin: 2em;
-}
-
-aside {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,7 +83,6 @@ aside {
 
 table {
     margin-top: 1em;
-    width: 100%;
 }
 
 th, td {
@@ -87,3 +90,4 @@ th, td {
     padding: 0.3em;
 }
 
+/* ----------------------------------------- */
