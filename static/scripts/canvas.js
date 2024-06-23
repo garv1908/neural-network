@@ -34,7 +34,6 @@ function clearCanvas() {
 
 function submitDrawing() {
     const dataURL = canvas.toDataURL();
-    console.log(dataURL)
     fetch("/predict", {
         method: "POST",
         headers: {
@@ -45,7 +44,22 @@ function submitDrawing() {
     .then(response => response.json())
     .then(data => {
         console.log("Prediction Result:", data);
-        document.getElementById('result').innerText = `Prediction: ${data.prediction}`;
+        for (var j = 0; j < 5; j++) {
+            var max = data[0];
+            var maxIndex = 0;
+            
+            for (var i = 1; i < data.length; i++) {
+                console.log(`i ${i}`)
+                if (data[i] > max) {
+                    maxIndex = i;
+                    max = data[i];
+                }
+            }            
+            
+            document.getElementById(`row${j+1}`).querySelector('td').innerText = maxIndex;
+            document.getElementById(`percentage${j+1}`).innerText = `${(max * 100).toFixed(4)}%`;
+            data[maxIndex] = 0;
+        }
     })
     .catch(error => {
         console.error("Prediction Error:", error);
