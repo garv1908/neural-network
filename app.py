@@ -2,14 +2,22 @@ from flask import Flask, render_template, request, jsonify
 from nn import NeuralNetwork
 from PIL import Image
 import io
+import os
 import base64
 import numpy as np
-import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
 nn = NeuralNetwork()
-nn.train(epochs=1)
+
+model_filename = "feed-forward.pkl"
+
+if os.path.exists(model_filename):
+    nn = nn.load_model(model_filename)
+    print("Model loaded from file.")
+else:
+    nn.train(epochs=10)
+    print("New model trained and saved to file.")
 
 @app.route("/")
 def index():

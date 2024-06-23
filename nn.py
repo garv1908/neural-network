@@ -1,6 +1,7 @@
 from data import get_mnist
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
 """
 w = weights, b = bias, i = input, h = hidden, o = output, l = label
@@ -75,6 +76,10 @@ class NeuralNetwork():
             print(f"Accuracy: {round((self.nr_correct / self.images.shape[0]) * 100, 2)}%")
             self.nr_correct = 0
 
+        model_filename = "feed-forward.pkl"
+        with open(model_filename, "wb") as file:
+            pickle.dump(self, file)
+
     def get_prediction(self, img):
         # use forward propagation to get output values
         # forward propagation input -> hidden
@@ -86,11 +91,14 @@ class NeuralNetwork():
         o = 1 / (1 + np.exp(-o_pre))
         return o
 
+    def load_model(self, filename):
+        with open(filename, "rb") as file:
+            return pickle.load(file)
 
 if __name__ == "__main__":
 
     nn = NeuralNetwork()
-    nn.train(epochs=1)
+    nn.train(epochs=3)
 
     # show the results
     while True:
