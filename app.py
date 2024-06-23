@@ -40,7 +40,7 @@ def predict():
     greyscale_image = process_image(image_data)
 
     prediction = nn.get_prediction(greyscale_image)
-
+    
     return jsonify(prediction.tolist())
 
 if __name__ == "__main__":

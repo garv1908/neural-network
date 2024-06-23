@@ -43,27 +43,22 @@ function submitDrawing() {
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data)
+        const predictions = data.map((percentage, number) => ({ number, percentage }));
+        
+        predictions.sort((a, b) => b.percentage - a.percentage);
+        
+        // Display the top 5 predictions
         for (var j = 0; j < 5; j++) {
-            
-            var max = data[0];
-            var maxIndex = 0;
-            
-            for (var i = 1; i < data.length; i++) {
-                if (data[i] > max) {
-                    maxIndex = i;
-                    max = data[i];
-                }
-            }            
-            
-            document.getElementById(`row${j+1}`).querySelector('td').innerText = maxIndex;
-            document.getElementById(`percentage${j+1}`).innerText = `${(max * 100).toFixed(4)}%`;
-            data[maxIndex] = 0;
+            document.getElementById(`row${j+1}`).querySelector('td').innerText = predictions[j].number;
+            document.getElementById(`percentage${j+1}`).innerText = `${(predictions[j].percentage * 100).toFixed(4)}%`;
         }
     })
     .catch(error => {
         console.error("Prediction Error:", error);
     });
 }
+
 
 canvas.addEventListener("mousedown", startPosition);
 canvas.addEventListener("mouseup", endPosition);
