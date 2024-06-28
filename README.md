@@ -19,4 +19,4 @@ The cyclic motion of self-learning neural networks comes up when we introduce ba
 
 ## Some final words
 
-This is a good dive into the 'hello-world' for neural networks, and this project has definitely provided me with knowledge that'll definitely help me continue working on more interesting projects in the future!
+This is a good dive into the 'hello-world' for neural networks, and this project has provided me with knowledge that'll definitely help me continue working on more interesting projects in the future!

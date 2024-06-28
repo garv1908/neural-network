@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from nn import NeuralNetwork
+from fnn import FeedForwardNN
 from PIL import Image
 import io
 import os
@@ -8,7 +8,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-nn = NeuralNetwork()
+nn = FeedForwardNN()
 
 model_filename = "./loaded_models/feed-forward.pkl"
 

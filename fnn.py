@@ -7,7 +7,7 @@ import pickle
 w = weights, b = bias, i = input, h = hidden, o = output, l = label
 e.g. w_i_h = weights from input layer to hidden layer
 """
-class NeuralNetwork():
+class FeedForwardNN():
     def __init__(self):
         self.images, self.labels = get_mnist()
 
@@ -97,7 +97,7 @@ class NeuralNetwork():
 
 if __name__ == "__main__":
 
-    nn = NeuralNetwork()
+    nn = FeedForwardNN()
     nn.train(epochs=3)
 
     # show the results
