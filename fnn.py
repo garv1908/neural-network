@@ -97,18 +97,18 @@ class FeedForwardNN():
 
 if __name__ == "__main__":
 
-    nn = FeedForwardNN()
-    nn.train(epochs=3)
+    fnn = FeedForwardNN()
+    fnn.train(epochs=3)
 
     # show the results
     while True:
         index = int(input("Enter a number (0-59999): "))
         
-        img = nn.images[index]
+        img = fnn.images[index]
         plt.imshow(img.reshape(28, 28), cmap="Greys")
 
         img.shape += (1, )
-        o = nn.get_prediction(img)
+        o = fnn.get_prediction(img)
 
         plt.title(f"Is the number a {o.argmax()}? :)")
         plt.show()
