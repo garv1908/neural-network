@@ -1,6 +1,5 @@
 from data import get_mnist
 import numpy as np
-import matplotlib.pyplot as plt
 import pickle
 
 """
@@ -109,6 +108,8 @@ if __name__ == "__main__":
 
     # show the results
     while True:
+        import matplotlib.pyplot as plt
+        
         index = int(input("Enter a number (0-59999): "))
         
         img = fnn.images[index]

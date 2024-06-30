@@ -1,7 +1,6 @@
 from data import get_mnist
 import numpy as np
 import tensorflow as tf
-import matplotlib.pyplot as plt
 
 print('Tensorflow version:', tf.__version__)
 print('Keras version:', tf.keras.__version__)
