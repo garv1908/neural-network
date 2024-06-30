@@ -1,6 +1,8 @@
 # Learning to write a neural network that recognizes hand-written digits!
 
-This is a humble adventure to venture out into the world of machine-learning. I've heavily commented the code in nn.py, mostly for my own understanding of the concepts, but feel free to run [the file](./nn.py) and check out how the program performs yourself! It goes through 3 epochs, or iterations, training itself on the MNIST dataset included in `/data`. The rest of the program in nn.py then asks for a number between 0 to 59999, which is the size of the dataset, and then predicts what the number is based on its pre-adjusted weights and biases.
+[Try here!](https://neural-network-demo.vercel.app)
+
+This is a humble adventure to venture out into the world of machine-learning. I've heavily commented the code in fnn.py, mostly for my own understanding of the concepts, but feel free to run [the file](./fnn.py) and check out how the program performs yourself! It goes through epochs, or iterations, training itself on the MNIST dataset included in `/data`. The rest of the program in fnn.py then asks for a number between 0 to 59999, which is the size of the dataset, and then predicts what the number is based on its pre-adjusted weights and biases.
 
 I've also developed a website using flask that allows you to draw a digit on a canvas! Once you click submit, the image is processed and then sent into the neural network to obtain a prediction. This currently does not perform at the greatest accuracy but I've planned to try my luck at also developing a convolutional neural network (CNN) to see how that would perform in place of a feed-forward neural network (FNN).
 
