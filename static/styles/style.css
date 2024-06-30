@@ -12,13 +12,24 @@ body {
     font-family: "Poppins", sans-serif;
     display: grid;
     grid-template-areas: 
-    "head   head    head    pred    "
-    ".      canvas  canvas  pred    "
-    ".      button  button  pred    ";
-    grid-template-rows: 5em 300px 4em;
-    grid-template-columns: auto 1fr auto;
+    "main   pred";
     transition: all 1s ease;
     align-items: center;
+}
+
+section:first-of-type {
+    grid-area: main;
+    display: grid;
+    grid-template-areas: 
+    "head    head   "
+    "canvas  canvas "
+    "button  button ";
+    grid-template-rows: 5em 300px 4em;
+    grid-template-columns: 1fr 1fr;
+    transition: all 1s ease;
+    align-items: center;
+    justify-self: end;
+    align-self: end;
 }
 
 h1 {
@@ -26,7 +37,7 @@ h1 {
     font-weight: 600;
     grid-area: head;
     text-align: center;
-    margin: 1em;
+    margin: 1.5em 1em 1em 1em;
 }
 
 canvas {
@@ -75,10 +86,12 @@ aside {
     border: 0.05em solid var(--off-black);
     padding: 0.7em;
     grid-area: pred;
+    width: 11em;
     margin: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
+    scale: 1.1;
 }
 
 table {
