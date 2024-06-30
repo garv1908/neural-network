@@ -59,7 +59,13 @@ class ConvolutionalNN():
 
         self.model.summary()
 
+        adam_optimizer = tf.keras.optimizers.Adam(learning_rate = 0.001)
 
+        self.model.compile(
+            optimizer = adam_optimizer,
+            loss = tf.keras.losses.sparse_categorical_crossentropy,
+            metrics = ['accuracy']
+        )
 
 
     def get_prediction(self, img):
