@@ -92,8 +92,15 @@ class FeedForwardNN():
         return o
 
     def load_model(self, filename):
-        with open(filename, "rb") as file:
-            return pickle.load(file)
+        try:
+            with open(filename, "rb") as file:
+                model = pickle.load(file)
+            return model
+        except:
+            print("Error loading the model. Retraining...")
+            open(filename, 'w').close()
+            self.train(epochs=3)
+            return self
 
 if __name__ == "__main__":
 
