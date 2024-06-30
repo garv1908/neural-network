@@ -2,6 +2,7 @@ from data import get_mnist
 import numpy as np
 import pickle
 
+
 """
 w = weights, b = bias, i = input, h = hidden, o = output, l = label
 e.g. w_i_h = weights from input layer to hidden layer
@@ -21,7 +22,7 @@ class FeedForwardNN():
         self.learn_rate = 0.01
         self.nr_correct = 0
     
-    def train(self, epochs):
+    def train(self, epochs, save_model):
         for epoch in range(epochs): # number of iterations for each input/sample/image
             for img, l in zip(self.images, self.labels):
                 # converting img and l from vectors to matrices
@@ -74,10 +75,10 @@ class FeedForwardNN():
             # show accuracy for this epoch
             print(f"Accuracy: {round((self.nr_correct / self.images.shape[0]) * 100, 2)}%")
             self.nr_correct = 0
-
-        model_filename = "./tmp/loaded_models/feed-forward.pkl"
-        with open(model_filename, "wb") as file:
-            pickle.dump(self, file)
+        if save_model == True:
+            model_filename = "./tmp/loaded_models/feed-forward.pkl"
+            with open(model_filename, "wb") as file:
+                pickle.dump(self, file)
 
     def get_prediction(self, img):
         # use forward propagation to get output values
