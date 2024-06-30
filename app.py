@@ -16,7 +16,7 @@ if os.path.exists(model_filename):
     nn = nn.load_model(model_filename)
     print("Model loaded from file.")
 else:
-    nn.train(epochs=5)
+    nn.train(epochs=1)
     print("New model trained and saved to file.")
 
 @app.route("/")

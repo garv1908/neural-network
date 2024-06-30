@@ -98,7 +98,7 @@ class FeedForwardNN():
         except:
             print("Error loading the model. Retraining...")
             open(filename, 'w').close()
-            self.train(epochs=3)
+            self.train(epochs=1)
             return self
 
 if __name__ == "__main__":
@@ -109,7 +109,7 @@ if __name__ == "__main__":
     # show the results
     while True:
         import matplotlib.pyplot as plt
-        
+
         index = int(input("Enter a number (0-59999): "))
         
         img = fnn.images[index]
