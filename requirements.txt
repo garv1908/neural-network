@@ -44,7 +44,6 @@ tensorboard-data-server==0.7.2
 tensorflow==2.16.2
 tensorflow-hub==0.12.0
 tensorflow-intel==2.16.2
-tensorflowjs==3.18.0
 termcolor==2.4.0
 typing_extensions==4.12.2
 urllib3==2.2.2
