@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from fnn import FeedForwardNN
+from cnn import ConvolutionalNN
 from PIL import Image
 import io
 import os
@@ -8,15 +9,17 @@ import numpy as np
 
 app = Flask(__name__)
 
-nn = FeedForwardNN()
+# nn = FeedForwardNN()
+nn = ConvolutionalNN()
 
-model_filename = "./tmp/loaded_models/feed-forward.pkl"
+# model_filename = "./tmp/loaded_models/feed-forward.pkl"
+model_filename = "./tmp/loaded_models/convolutional.pkl"
 
 if os.path.exists(model_filename):
-    nn = nn.load_model(model_filename)
+    nn.load_model(model_filename)
     print("Model loaded from file.")
 else:
-    nn.train(epochs=1, save_model=False)
+    nn.train(epochs=1)
     print("New model trained and saved to file.")
 
 @app.route("/")
