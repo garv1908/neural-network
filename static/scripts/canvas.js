@@ -60,11 +60,26 @@ function submitDrawing() {
 }
 
 function changeToFNN() {
-
+    fetch("/changeModel", {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: "FNN"
+    })
 }
 
 function changeToCNN() {
-    
+    fetch("/changeModel", {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: "CNN"
+    })
+    .then(data => {
+        console.log("Changed model.", data)
+    })
 }
 
 
