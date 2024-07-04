@@ -9,22 +9,52 @@ import numpy as np
 
 app = Flask(__name__)
 
-# nn = FeedForwardNN()
-nn = ConvolutionalNN()
+nn = None
 
-# model_filename = "./tmp/loaded_models/feed-forward.pkl"
-model_filename = "./tmp/loaded_models/convolutional.pkl"
+@app.route("/changeModel", methods=["POST"])
+def change_model():
+    global nn
+    data = str(request.get_data())[2:-1]
+    from icecream import ic
+    ic(data)
+    if data == "FNN":
+        nn = FeedForwardNN()
+        model_filename = "./tmp/loaded_models/feed-forward.pkl"
+        print("fnn")
+    else:
+        print("cnn")
+        nn = ConvolutionalNN()
+        model_filename = "./tmp/loaded_models/convolutional.pkl"
+    
+    if os.path.exists(model_filename):
+        nn.load_model(model_filename)
+        print("Model loaded from file.")
+    else:
+        nn.train(epochs=1)
+        print("New model trained and saved to file.")
 
-if os.path.exists(model_filename):
-    nn.load_model(model_filename)
-    print("Model loaded from file.")
-else:
-    nn.train(epochs=1)
-    print("New model trained and saved to file.")
+    return jsonify({"message": "Model changed successfully", "model": data})
 
 @app.route("/")
 def index():
+    global nn
+    
+    if nn is None:
+        # Load default configurations
+        nn = ConvolutionalNN()
+        model_filename = "./tmp/loaded_models/convolutional.pkl"
+        print("loaded default")
+
+        if os.path.exists(model_filename):
+            nn.load_model(model_filename)
+            print("Model loaded from file.")
+        else:
+            nn.train(epochs=1)
+            print("New model trained and saved to file.")
+        # ---------------------------
     return render_template("index.html")
+    
+
 
 def process_image(image_data):
     image_data = image_data.split(',')[1]
@@ -39,6 +69,7 @@ def process_image(image_data):
     grey_image = grey_image.astype("float32") / 255
 
     return grey_image
+
 
 @app.route("/predict", methods=["POST"])
 def predict():
