@@ -86,8 +86,6 @@ class FeedForwardNN():
         # forward propagation hidden -> output
         o_pre = self.b_h_o + self.w_h_o @ h
         o = 1 / (1 + np.exp(-o_pre))
-        from icecream import ic
-        ic(o)
         return o
 
     def load_model(self, filename):

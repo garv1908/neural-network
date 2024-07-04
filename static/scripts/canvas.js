@@ -59,6 +59,14 @@ function submitDrawing() {
     });
 }
 
+function changeToFNN() {
+
+}
+
+function changeToCNN() {
+    
+}
+
 
 canvas.addEventListener("mousedown", startPosition);
 canvas.addEventListener("mouseup", endPosition);

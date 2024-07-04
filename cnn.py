@@ -81,9 +81,6 @@ class ConvolutionalNN():
         img = np.expand_dims(img, axis=0)
         prediction = self.model.predict(img)
 
-        from icecream import ic
-        ic(prediction)
-        
         return prediction[0]
     
     def load_model(self, filename="./tmp/loaded_models/convolutional.pkl"):
