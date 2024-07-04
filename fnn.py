@@ -22,7 +22,7 @@ class FeedForwardNN():
         self.learn_rate = 0.01
         self.nr_correct = 0
     
-    def train(self, epochs, save_model):
+    def train(self, epochs, save_model = True):
         for epoch in range(epochs): # number of iterations for each input/sample/image
             for img, l in zip(self.images, self.labels):
                 # converting img and l from vectors to matrices
@@ -75,10 +75,7 @@ class FeedForwardNN():
             # show accuracy for this epoch
             print(f"Accuracy: {round((self.nr_correct / self.images.shape[0]) * 100, 2)}%")
             self.nr_correct = 0
-        if save_model == True:
-            model_filename = "./tmp/loaded_models/feed-forward.pkl"
-            with open(model_filename, "wb") as file:
-                pickle.dump(self, file)
+        self.save_model()
 
     def get_prediction(self, img):
         # use forward propagation to get output values
@@ -89,18 +86,24 @@ class FeedForwardNN():
         # forward propagation hidden -> output
         o_pre = self.b_h_o + self.w_h_o @ h
         o = 1 / (1 + np.exp(-o_pre))
+        from icecream import ic
+        ic(o)
         return o
 
     def load_model(self, filename):
         try:
             with open(filename, "rb") as file:
-                model = pickle.load(file)
-            return model
+                self = pickle.load(file)
         except:
             print("Error loading the model. Retraining...")
             open(filename, 'w').close()
             self.train(epochs=1)
             return self
+        
+    def save_model(self, filename="./tmp/loaded_models/feed-forward.pkl"):
+        # model_filename = "./tmp/loaded_models/feed-forward.pkl"
+        with open(filename, "wb") as file:
+            pickle.dump(self, file)
 
 if __name__ == "__main__":
 
