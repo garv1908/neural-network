@@ -11,12 +11,11 @@ app = Flask(__name__)
 
 nn = None
 
+
 @app.route("/changeModel", methods=["POST"])
 def change_model():
     global nn
     data = str(request.get_data())[2:-1]
-    from icecream import ic
-    ic(data)
     if data == "FNN":
         nn = FeedForwardNN()
         model_filename = "./tmp/loaded_models/feed-forward.pkl"
@@ -34,6 +33,7 @@ def change_model():
         print("New model trained and saved to file.")
 
     return jsonify({"message": "Model changed successfully", "model": data})
+
 
 @app.route("/")
 def index():
@@ -53,7 +53,6 @@ def index():
             print("New model trained and saved to file.")
         # ---------------------------
     return render_template("index.html")
-    
 
 
 def process_image(image_data):
@@ -84,6 +83,7 @@ def predict():
     prediction = nn.get_prediction(greyscale_image)
     
     return jsonify(prediction.tolist())
+
 
 if __name__ == "__main__":
     app.run(debug=True)

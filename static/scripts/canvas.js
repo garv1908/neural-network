@@ -59,6 +59,8 @@ function submitDrawing() {
     });
 }
 
+const modelName = document.getElementById("modelName")
+
 function changeToFNN() {
     fetch("/changeModel", {
         method: "POST",
@@ -66,6 +68,12 @@ function changeToFNN() {
             "Content-Type": 'application/json'
         },
         body: "FNN"
+    })
+    .then(data => {
+        console.log("Changed model.", data)
+        if (data.ok) {
+            modelName.innerHTML = "FNN"
+        }
     })
 }
 
@@ -79,6 +87,9 @@ function changeToCNN() {
     })
     .then(data => {
         console.log("Changed model.", data)
+        if (data.ok) {
+            modelName.innerHTML = "CNN"
+        }
     })
 }
 
