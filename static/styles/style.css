@@ -14,7 +14,8 @@ body {
     font-family: "Poppins", sans-serif;
     display: grid;
     grid-template-areas: 
-    "main   pred";
+    "main   pred"
+    "footer footer";
     transition: all 1s ease;
     align-items: center;
 }
@@ -57,7 +58,14 @@ header {
     padding: 1em;
 }
 
-
+footer {
+    grid-area: footer;
+    padding: 2em;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* ------------- Button styles ------------- */
 
@@ -115,9 +123,11 @@ aside {
     grid-area: pred;
     width: 11em;
     margin: 2em;
+    align-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     scale: 1.1;
 }
 
