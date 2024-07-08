@@ -103,7 +103,7 @@ class ConvolutionalNN():
 if __name__ == "__main__":
     
     cnn = ConvolutionalNN()
-    cnn.train(epochs=1)
+    cnn.train(epochs=10)
     
 
     # show the results
