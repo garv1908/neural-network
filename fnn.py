@@ -91,7 +91,7 @@ class FeedForwardNN():
     def load_model(self, filename):
         try:
             with open(filename, "rb") as file:
-                self = pickle.load(file)
+                self.w_i_h, self.w_h_o, self.b_i_h, self.b_h_o = pickle.load(file)
         except:
             print("Error loading the model. Retraining...")
             open(filename, 'w').close()
@@ -101,7 +101,7 @@ class FeedForwardNN():
     def save_model(self, filename="./tmp/loaded_models/feed-forward.pkl"):
         # model_filename = "./tmp/loaded_models/feed-forward.pkl"
         with open(filename, "wb") as file:
-            pickle.dump(self, file)
+            pickle.dump([self.w_i_h, self.w_h_o, self.b_i_h, self.b_h_o], file)
 
 if __name__ == "__main__":
 
