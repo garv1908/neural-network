@@ -1,5 +1,7 @@
 "use strict";
 
+// canvas setup
+
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
 let painting = false;
@@ -59,7 +61,26 @@ function submitDrawing() {
     });
 }
 
+// ----------------------------------------------------
+
+// model changes
+
 const modelName = document.getElementById("modelName")
+
+function selectButton(button) {
+    button.style.backgroundColor = "var(--off-black)";
+    button.style.color = "var(--off-white)";
+    button.style.borderColor = "var(--off-white)";
+}
+
+function unselectButton(button) {
+    button.style.backgroundColor = "var(--off-white)";
+    button.style.color = "var(--off-black)";
+    button.style.borderColor = "var(--off-black)";
+}
+
+const fnnBtn = document.getElementById("fnnBtn")
+const cnnBtn = document.getElementById("cnnBtn")
 
 function changeToFNN() {
     fetch("/changeModel", {
@@ -72,7 +93,9 @@ function changeToFNN() {
     .then(data => {
         console.log("Changed model.", data)
         if (data.ok) {
-            modelName.innerHTML = "FNN"
+            modelName.innerHTML = "FNN";
+            unselectButton(cnnBtn);
+            selectButton(fnnBtn);
         }
     })
 }
@@ -88,12 +111,23 @@ function changeToCNN() {
     .then(data => {
         console.log("Changed model.", data)
         if (data.ok) {
-            modelName.innerHTML = "CNN"
+            modelName.innerHTML = "CNN";
+            unselectButton(fnnBtn);
+            selectButton(cnnBtn);
         }
     })
 }
 
+// ----------------------------------------------------
+
+
+
+// event listeners
+
+document.onload(selectButton(cnnBtn))
 
 canvas.addEventListener("mousedown", startPosition);
 canvas.addEventListener("mouseup", endPosition);
 canvas.addEventListener("mousemove", draw);
+
+// ----------------------------------------------------

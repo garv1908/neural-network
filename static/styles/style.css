@@ -16,6 +16,7 @@ body {
     grid-template-areas: 
     "main   pred"
     "footer footer";
+    grid-template-columns: 2.25fr 1fr;
     transition: all 1s ease;
     align-items: center;
 }
