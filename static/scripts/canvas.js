@@ -124,7 +124,7 @@ function changeToCNN() {
 
 // event listeners
 
-document.onload(selectButton(cnnBtn))
+selectButton(cnnBtn)
 
 canvas.addEventListener("mousedown", startPosition);
 canvas.addEventListener("mouseup", endPosition);
