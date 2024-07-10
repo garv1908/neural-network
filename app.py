@@ -15,43 +15,54 @@ nn = None
 @app.route("/changeModel", methods=["POST"])
 def change_model():
     global nn
-    data = str(request.get_data())[2:-1]
-    if data == "FNN":
-        nn = FeedForwardNN()
-        model_filename = "./tmp/loaded_models/feed-forward.pkl"
-        print("fnn")
-    else:
-        print("cnn")
-        nn = ConvolutionalNN()
-        model_filename = "./tmp/loaded_models/convolutional.pkl"
-    
-    if os.path.exists(model_filename):
-        nn.load_model(model_filename)
-        print("Model loaded from file.")
-    else:
-        nn.train(epochs=1)
-        print("New model trained and saved to file.")
 
+    data = str(request.get_data())[2:-1]
+
+    if data == "FNN":
+        nn = fnn
+    else:
+        nn = cnn
+    
     return jsonify({"message": "Model changed successfully", "model": data})
 
 
 @app.route("/")
 def index():
     global nn
-    
+    global cnn
+    global fnn
+
     if nn is None:
+        defaultModel = "cnn"
+
         # Load default configurations
-        nn = ConvolutionalNN()
+        cnn = ConvolutionalNN()
         model_filename = "./tmp/loaded_models/convolutional.pkl"
-        print("loaded default")
 
         if os.path.exists(model_filename):
-            nn.load_model(model_filename)
+            cnn.load_model(model_filename)
             print("Model loaded from file.")
         else:
-            nn.train(epochs=1)
+            cnn.train(epochs=1)
             print("New model trained and saved to file.")
         # ---------------------------
+
+        # Load other model
+        fnn = FeedForwardNN()
+        model_filename = "./tmp/loaded_models/feed-forward.pkl"
+
+        if os.path.exists(model_filename):
+            fnn.load_model(model_filename)
+            print("Model loaded from file.")
+        else:
+            fnn.train(epochs=1)
+            print("New model trained and saved to file.")
+        # ---------------------------
+
+        if defaultModel == "cnn":
+            nn = cnn
+        elif defaultModel == "fnn":
+            nn = fnn
     return render_template("index.html")
 
 
