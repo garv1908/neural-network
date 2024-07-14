@@ -40,7 +40,7 @@ python-dateutil==2.9.0.post0
 requests==2.32.3
 rich==13.7.1
 six==1.16.0
-tensorboard==2.17.0
+tensorboard==2.16.2
 tensorboard-data-server==0.7.2
 tensorflow-cpu==2.16.2
 tensorflow-io-gcs-filesystem==0.31.0
