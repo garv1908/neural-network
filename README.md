@@ -4,7 +4,7 @@
 
 This is a humble adventure to venture out into the world of machine-learning. I've heavily commented the code in fnn.py, mostly for my own understanding of the concepts, but feel free to run [the file](./fnn.py) and check out how the program performs yourself! It goes through epochs, or iterations, training itself on the MNIST dataset included in `/data`. The rest of the program in fnn.py then asks for a number between 0 to 59999, which is the size of the dataset, and then predicts what the number is based on its pre-adjusted weights and biases.
 
-I've also developed a website using flask ((app.py))[app.py] that allows you to draw a digit on a canvas! Once you click submit, the image is processed and then sent into the neural network to obtain a prediction. I've added two models, so you can experiment and see (very clearly), how a convolutional neural network (CNN) performs in place of a feed-forward neural network (FNN).
+I've also developed a website using flask (within [app.py](app.py)) that allows you to draw a digit on a canvas! Once you click submit, the image is processed and then sent into the neural network to obtain a prediction. I've developed two models, so you can experiment and see (very clearly), how a convolutional neural network (CNN) performs in place of a feed-forward neural network (FNN).
 
 The models themselves are stored in a pickle file, and have been trained previously for easy access.
 
@@ -21,7 +21,7 @@ The cyclic motion of self-learning neural networks comes up when we introduce ba
 
 ### CNN
 
-A little more complex to understand, but has a lot of fun functions that a bunch of libraries let you experiment with! I used tensorflow and played around with a sequential model with an adam optimizer and used a small dropout rate to prevent overfitting (something that the other model completely lacked).
+A little more complex to understand, so I won't be explaining it in detail here, but there are a lot of fun layers that a bunch of libraries let you experiment with! I used tensorflow and played around with a sequential model with an adam optimizer and used a small dropout rate to prevent overfitting (something that the other model completely lacked).
 
 ## Some final words
 
