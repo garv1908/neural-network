@@ -1,10 +1,10 @@
 from data import get_mnist
 import numpy as np
-import tensorflow as tf
+# import tensorflow as tf
 import pickle
 
-print('Tensorflow version:', tf.__version__)
-print('Keras version:', tf.keras.__version__)
+# print('Tensorflow version:', tf.__version__)
+# print('Keras version:', tf.keras.__version__)
 class ConvolutionalNN():
     def __init__(self):
         self.images, self.labels = get_mnist()
@@ -88,10 +88,12 @@ class ConvolutionalNN():
             with open(filename, "rb") as file:
                 self.model = pickle.load(file)
         except:
-            print("Error loading the model. Retraining...")
-            open(filename, 'w').close()
-            self.train(epochs=1)
-            return self
+            print("Error loading the model.")
+            # print("Erasing...")
+            # open(filename, 'w').close()
+            # self.train(epochs=1)
+            # print("Retrained model.")
+            # return self
         
     def save_model(self, filename="./tmp/loaded_models/convolutional.pkl"):
         # model_filename = "./tmp/loaded_models/convolutional.pkl"
