@@ -89,11 +89,13 @@ def predict():
         return jsonify({'error': 'No image data provided'}), 400
 
     image_data = data['image']
-    greyscale_image = process_image(image_data)
+    greyscale_image_array = process_image(image_data)
 
-    prediction = nn.get_prediction(greyscale_image)
+    prediction = nn.get_prediction(greyscale_image_array)
     
-    return jsonify(prediction.tolist())
+    if isinstance(prediction, (np.ndarray, np.generic)):
+        return jsonify(prediction.tolist())
+    return jsonify(prediction)
 
 
 if __name__ == "__main__":
