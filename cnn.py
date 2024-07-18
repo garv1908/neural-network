@@ -1,87 +1,51 @@
 from data import get_mnist
 import numpy as np
-import tensorflow as tf
+# import tensorflow as tf
 import pickle
+import subprocess
+import json
 
-print('Tensorflow version:', tf.__version__)
-print('Keras version:', tf.keras.__version__)
+# print('Tensorflow version:', tf.__version__)
+# print('Keras version:', tf.keras.__version__)
 class ConvolutionalNN():
     def __init__(self):
         self.images, self.labels = get_mnist()
         self.IMAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_CHANNELS = 28, 28, 1
         self.images = np.reshape(self.images, (self.images.shape[0], self.IMAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_CHANNELS))
 
-        
-    def train(self, epochs):
-        self.model = tf.keras.models.Sequential()
+    from tf_cnn_train_model import train
 
-        self.model.add(tf.keras.layers.Convolution2D(
-            input_shape = (self.IMAGE_WIDTH, self.IMAGE_HEIGHT, self.IMAGE_CHANNELS),
-            kernel_size = 5,
-            filters = 8,
-            strides = 1,
-            activation = tf.keras.activations.relu,
-            kernel_initializer = tf.keras.initializers.VarianceScaling()
-        ))
+    """
+    this commented out code would be directly making a prediction from the loaded tf model
+    """
+    # def get_prediction(self, img):
+    #     img = np.expand_dims(img, axis=-1)
+    #     img = np.expand_dims(img, axis=0)
+    #     prediction = self.model.predict(img)
 
-        self.model.add(tf.keras.layers.MaxPooling2D(
-            pool_size = (2, 2),
-            strides = (2, 2),
-        ))
+    #     return prediction[0]
 
-        self.model.add(tf.keras.layers.Convolution2D(
-            kernel_size = 5,
-            filters = 16,
-            strides = 1,
-            activation = tf.keras.activations.relu,
-            kernel_initializer = tf.keras.initializers.VarianceScaling()
-        ))
-
-        self.model.add(tf.keras.layers.MaxPooling2D(
-            pool_size = (2, 2),
-            strides = (2, 2),
-        ))
-
-        self.model.add(tf.keras.layers.Flatten())
-
-        self.model.add(tf.keras.layers.Dense(
-            units = 128,
-            activation = tf.keras.activations.relu
-        ))
-
-        self.model.add(tf.keras.layers.Dropout(0.2))
-
-        self.model.add(tf.keras.layers.Dense(
-            units = 10,
-            activation = tf.keras.activations.softmax,
-            kernel_initializer = tf.keras.initializers.VarianceScaling()
-        ))
-
-        self.model.summary()
-
-        adam_optimizer = tf.keras.optimizers.Adam(learning_rate = 0.001)
-
-        self.model.compile(
-            optimizer = adam_optimizer,
-            loss = tf.keras.losses.categorical_crossentropy,
-            metrics = ['accuracy']
-        )
-
-        training_history = self.model.fit(
-            self.images,
-            self.labels,
-            epochs=epochs
-        )
-
-        self.save_model()
-
-
+    """
+    below uses cnn.js to get a prediction back from tensorflowjs
+    """
     def get_prediction(self, img):
-        img = np.expand_dims(img, axis=-1)
-        img = np.expand_dims(img, axis=0)
-        prediction = self.model.predict(img)
 
-        return prediction[0]
+        # Call the Node.js script
+        process = subprocess.Popen(['node', 'cnn.js'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        input_data = json.dumps({'image': img.tolist()})
+        stdout, stderr = process.communicate(input=input_data.encode())
+
+        if stderr:
+            print(f"Error: {stderr.decode()}")
+            return None
+
+        response = json.loads(stdout.decode())
+        print(response)
+        
+        if 'error' in response:
+            print(f"Error: {response['error']}")
+            return None
+        return response['prediction'][0]
     
     def load_model(self, filename="./tmp/loaded_models/convolutional.pkl"):
         try:
@@ -96,7 +60,6 @@ class ConvolutionalNN():
             return self
         
     def save_model(self, filename="./tmp/loaded_models/convolutional.pkl"):
-        # model_filename = "./tmp/loaded_models/convolutional.pkl"
         with open(filename, "wb") as file:
             pickle.dump(self.model, file)
         print("model saved to:", filename)
