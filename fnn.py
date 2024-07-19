@@ -1,7 +1,7 @@
 from data import get_mnist
 import numpy as np
 import pickle
-
+import matplotlib.pyplot as plt
 
 """
 w = weights, b = bias, i = input, h = hidden, o = output, l = label
@@ -110,8 +110,6 @@ if __name__ == "__main__":
 
     # show the results
     while True:
-        import matplotlib.pyplot as plt
-
         index = int(input("Enter a number (0-59999): "))
         
         img = fnn.images[index]
