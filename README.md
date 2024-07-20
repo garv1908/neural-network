@@ -36,6 +36,10 @@ python fnn.py
 
 This loads the pre-existing model or trains it if it's unable to. The rest of the program then asks for a number between 0 to 59999, which is the size of the dataset, and then predicts what the number is based on its pre-adjusted weights and biases, and displayes it to the user using matplotlib's pyplot functionality.
 
+#### TensorFlow.js
+
+I've written a script in javascript running with node that uses tensorflowjs, [cnn.js](./tfjs/cnn.js), but it was an attempt at checking to see whether using this would reduce file size. Since it's failed, it's been abandoned. It (should) still work, so feel free to try it out. The part of the code interacting with this is located in [cnn.py](cnn.py) and is commented out.
+
 ## How does it work?
 
 ### FNN
