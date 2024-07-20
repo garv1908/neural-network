@@ -1,7 +1,7 @@
 const tf = require('@tensorflow/tfjs-node');
 
 async function loadModel() {
-    return await tf.loadGraphModel('file://./tmp/loaded_models/convolutional_tfjs/model.json');
+    return await tf.loadGraphModel('file://./loaded_models/convolutional_tfjs/model.json');
 }
 
 async function predict(model, imageData) {

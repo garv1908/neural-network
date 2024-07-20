@@ -88,25 +88,24 @@ class FeedForwardNN():
         o = 1 / (1 + np.exp(-o_pre))
         return o
 
-    def load_model(self, filename):
+    def load_model(self, filename="./loaded_models/feed-forward.pkl"):
         try:
             with open(filename, "rb") as file:
                 self.w_i_h, self.w_h_o, self.b_i_h, self.b_h_o = pickle.load(file)
         except:
             print("Error loading the model. Retraining...")
             open(filename, 'w').close()
-            self.train(epochs=1)
+            self.train(epochs=3)
             return self
         
-    def save_model(self, filename="./tmp/loaded_models/feed-forward.pkl"):
-        # model_filename = "./tmp/loaded_models/feed-forward.pkl"
+    def save_model(self, filename="./loaded_models/feed-forward.pkl"):
         with open(filename, "wb") as file:
             pickle.dump([self.w_i_h, self.w_h_o, self.b_i_h, self.b_h_o], file)
 
 if __name__ == "__main__":
 
     fnn = FeedForwardNN()
-    fnn.train(epochs=3)
+    fnn.load_model()
 
     # show the results
     while True:

@@ -37,7 +37,7 @@ def index():
 
         # Load default configurations
         cnn = ConvolutionalNN()
-        model_filename = "./tmp/loaded_models/convolutional.pkl"
+        model_filename = "./loaded_models/convolutional.pkl"
 
         if os.path.exists(model_filename):
             cnn.load_model(model_filename)
@@ -49,7 +49,7 @@ def index():
 
         # Load other model
         fnn = FeedForwardNN()
-        model_filename = "./tmp/loaded_models/feed-forward.pkl"
+        model_filename = "./loaded_models/feed-forward.pkl"
 
         if os.path.exists(model_filename):
             fnn.load_model(model_filename)

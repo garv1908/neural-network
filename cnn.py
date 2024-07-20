@@ -108,7 +108,7 @@ class ConvolutionalNN():
     #         return None
     #     return response['prediction'][0]
     
-    def load_model(self, filename="./tmp/loaded_models/convolutional.pkl"):
+    def load_model(self, filename="./loaded_models/convolutional.pkl"):
         try:
             with open(filename, "rb") as file:
                 self.model = pickle.load(file)
@@ -116,11 +116,12 @@ class ConvolutionalNN():
             print("Error loading the model.")
             print("Erasing...")
             open(filename, 'w').close()
-            self.train(epochs=1)
+            print("Proceeding to retrain model...")
+            self.train(epochs=10)
             print("Retrained model.")
             return self
         
-    def save_model(self, filename="./tmp/loaded_models/convolutional.pkl"):
+    def save_model(self, filename="./loaded_models/convolutional.pkl"):
         with open(filename, "wb") as file:
             pickle.dump(self.model, file)
         print("model saved to:", filename)
