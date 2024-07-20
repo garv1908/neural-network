@@ -5,6 +5,7 @@ import tensorflow as tf
 
 print('Tensorflow version:', tf.__version__)
 print('Keras version:', tf.keras.__version__)
+
 class ConvolutionalNN():
     def __init__(self):
         self.images, self.labels = get_mnist()
@@ -91,8 +92,8 @@ class ConvolutionalNN():
     # def get_prediction(self, img):
     #     import subprocess
     #     import json
-    #     # Call the Node.js script
-    #     process = subprocess.Popen(['node', 'cnn.js'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #     # call the node.js script
+    #     process = subprocess.Popen(['node', './tfjs/cnn.js'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     #     input_data = json.dumps({'image': img.tolist()})
     #     stdout, stderr = process.communicate(input=input_data.encode())
 
