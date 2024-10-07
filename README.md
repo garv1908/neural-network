@@ -1,6 +1,7 @@
 # Learning to write a neural network that recognizes hand-written digits! (FNN from scratch and CNN w/ TensorFlow)
 
-Watch the latest version of the model being tested out [here!](https://youtu.be/6Ooz2Rw5Mfc)
+Watch the latest version of the model being tested out [here!](https://youtu.be/6Ooz2Rw5Mfc).
+
 [Try here!](https://neural-network-demo.vercel.app) (Vercel only allowed me to host the version w/o TensorFlow because the TF library exceeds the disk space limiations on the Vercel free plan)
 
 This is a humble adventure to venture out into the world of machine-learning. I've heavily commented the code in [fnn.py](fnn.py), mostly for my own understanding of the concepts, but feel free to run [the file](./fnn.py) and check out how the program performs yourself! It goes through epochs, or iterations, training itself on the MNIST dataset included in `/data/` if the loaded model is unavailable.
